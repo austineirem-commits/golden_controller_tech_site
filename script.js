@@ -22,7 +22,59 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initLattice();
+  renderAppsPortfolio();
 });
+
+// Renders the "Our Apps" portfolio grid from window.GCT_APPS (apps-data.js).
+// Editing which apps show up only requires editing apps-data.js — this
+// function just draws whatever is in that list.
+function renderAppsPortfolio() {
+  const grid = document.getElementById('apps-portfolio-grid');
+  if (!grid) return;
+
+  const apps = window.GCT_APPS || [];
+
+  if (!apps.length) {
+    grid.outerHTML = `
+      <div class="apps-empty reveal in">
+        <p>No apps published yet. Add one in <code>apps-data.js</code> and it'll show up here.</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = apps.map(app => {
+    const hasLink = app.url && app.url.trim().length > 0;
+    const footerRight = hasLink
+      ? `<a class="app-card-link" href="${escapeHtml(app.url)}" target="_blank" rel="noopener">View app →</a>`
+      : `<span class="app-card-soon">Coming soon</span>`;
+    return `
+      <div class="app-card">
+        <div class="app-card-top">
+          <div class="app-card-icon">
+            <img src="${escapeHtml(app.icon || 'assets/apps/placeholder-icon.png')}" alt="${escapeHtml(app.name || 'App')} icon" loading="lazy">
+          </div>
+          <div class="app-card-title">
+            <h3>${escapeHtml(app.name || 'Untitled app')}</h3>
+            ${app.status ? `<span class="status-pill">${escapeHtml(app.status)}</span>` : ''}
+          </div>
+        </div>
+        ${app.tagline ? `<p class="app-card-tagline">${escapeHtml(app.tagline)}</p>` : ''}
+        ${app.description ? `<p class="app-card-desc">${escapeHtml(app.description)}</p>` : ''}
+        <div class="app-card-footer">
+          <span class="app-card-platform">${escapeHtml(app.platform || '')}</span>
+          ${footerRight}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
 
 // Signature hero element: a hexagonal node lattice that pulses like a
 // controller's circuit board / the GCT ecosystem of connected services.
