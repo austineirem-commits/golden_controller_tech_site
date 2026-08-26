@@ -26,10 +26,10 @@ window.GCT_APPS = [
   {
     name: "Loopable",
     tagline: "social media app",
-    description: "A social media app that pays users for watching ads",
-    platform: "iOS · Android",
-    status: "beta",              // e.g. "Live", "Beta", "In development"
+    description: "A social media app that pays users for watching ads from admob",
+    platform: "iOS[comming soon] · Android",
+    status: "Live",              // e.g. "Live", "Beta", "In development"
     icon: "assets/apps/Loopable.jpg",
-    url: ""                      // paste a real link here, or leave blank
+    url: " https://austineirem-commits.github.io/golden_controller_tech_site/loopable.apk"                      // paste a real link here, or leave blank
   }
 ];
