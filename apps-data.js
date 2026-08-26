@@ -30,6 +30,6 @@ window.GCT_APPS = [
     platform: "iOS[comming soon] · Android",
     status: "Live",              // e.g. "Live", "Beta", "In development"
     icon: "assets/apps/Loopable.jpg",
-    url: "https://austineirem-commits.github.io/golden_controller_tech_site/Loopable.apk"                      // paste a real link here, or leave blank
+    url: "https://austineirem-commits.github.io/golden_controller_tech_site/loopable.apk"                      // paste a real link here, or leave blank
   }
 ];
