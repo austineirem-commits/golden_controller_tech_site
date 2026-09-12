@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Apps — Golden Controller Tech</title>
-<meta name="description" content="Apps built by Golden Controller Tech and the GCG ecosystem.">
+<title>Redeem — Loopable Rewards | Golden Controller Tech</title>
+<meta name="description" content="Redeem your Loopable coins for real rewards — headsets, apparel, tech, and more.">
 <link rel="icon" href="assets/mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -22,8 +22,8 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="apps.html">Apps</a></li>
-      <li><a href="our-apps.html" class="active">Our Apps</a></li>
-      <li><a href="redeem.html">Redeem</a></li>
+      <li><a href="our-apps.html">Our Apps</a></li>
+      <li><a href="redeem.html" class="active">Redeem</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
       <li><a href="terms.html">Terms &amp; Conditions</a></li>
       <li><a href="index.html#contact" class="nav-cta">Start a project</a></li>
@@ -33,31 +33,22 @@
 
 <main>
 
-  <section class="hero" style="padding-bottom:64px;">
+  <section class="hero" style="padding-bottom:56px;">
     <div class="container">
-      <span class="eyebrow">Our Apps</span>
-      <h1 style="max-width:720px;">Apps we've shipped for <em>GCT &amp; GCG</em> clients.</h1>
-      <p style="color:var(--muted); font-size:17px; max-width:560px; margin-top:18px;">A running record of what we've built — live products, betas, and a few things still in the oven.</p>
+      <span class="eyebrow">Loopable Rewards</span>
+      <h1 style="max-width:720px;">Turn your coins into <em>the good stuff</em>.</h1>
+      <p style="color:var(--muted); font-size:17px; max-width:560px; margin-top:18px;">A curated set of rewards for Loopable players. Pick an item, confirm with the email on your account, and our team will reach out to arrange delivery.</p>
     </div>
   </section>
 
-  <section class="section" id="portfolio">
+  <section class="section" id="store">
     <div class="container">
-      <div class="apps-portfolio-grid" id="apps-portfolio-grid">
-        <!-- Rendered from apps-data.js by script.js — edit apps-data.js to add your own apps. -->
-      </div>
-    </div>
-  </section>
 
-  <section class="section section-alt">
-    <div class="container">
-      <div class="cta-banner reveal">
-        <div>
-          <h3>Built something you're proud of?</h3>
-          <p>Send it over and we'll add it to the portfolio — or let's talk about building the next one.</p>
-        </div>
-        <a href="mailto:hello@goldencontrollertech.com" class="btn btn-primary">hello@goldencontrollertech.com</a>
+      <div class="store-grid reveal" id="redeem-store-grid">
+        <!-- Rendered from redeem-data.js by redeem.js — edit redeem-data.js to change items, prices, or photos. -->
       </div>
+
+      <p style="color:var(--muted-dim); font-size:13px; margin-top:28px; font-family:var(--font-mono);">Coin balances and item availability are managed inside the Loopable app. Redemption requests are reviewed manually and may take a few days to fulfill.</p>
     </div>
   </section>
 
@@ -77,7 +68,6 @@
           <li><a href="apps.html">Apps</a></li>
           <li><a href="our-apps.html">Our Apps</a></li>
           <li><a href="redeem.html">Redeem</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -101,7 +91,27 @@
   </div>
 </footer>
 
-<script src="apps-data.js"></script>
+<!-- Redeem confirmation modal -->
+<div class="redeem-modal-overlay" id="redeemOverlay">
+  <div class="redeem-modal" role="dialog" aria-modal="true" aria-labelledby="redeemModalTitle">
+    <button class="redeem-modal-close" id="redeemClose" aria-label="Close">&times;</button>
+    <span class="eyebrow">Confirm redemption</span>
+    <h3 id="redeemModalTitle">Redeem <span id="redeemItemName"></span></h3>
+    <p class="redeem-modal-cost">Cost: <strong id="redeemItemCost"></strong> coins</p>
+    <form id="redeemForm">
+      <label for="redeemEmail">Email on your Loopable account</label>
+      <input type="email" id="redeemEmail" name="email" required placeholder="you@example.com">
+      <input type="hidden" id="redeemItemField" name="item">
+      <input type="hidden" id="redeemCostField" name="coins">
+      <button type="submit" class="btn btn-primary" id="redeemSubmitBtn">Confirm redemption</button>
+    </form>
+    <p style="font-size:12.5px; color:var(--muted-dim); margin-top:12px;">This opens your email app with the request pre-filled — just hit send.</p>
+    <p class="redeem-modal-note" id="redeemStatus"></p>
+  </div>
+</div>
+
 <script src="script.js"></script>
+<script src="redeem-data.js"></script>
+<script src="redeem.js"></script>
 </body>
 </html>
